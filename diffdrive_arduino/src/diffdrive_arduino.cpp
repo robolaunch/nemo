@@ -106,6 +106,7 @@ hardware_interface::return_type DiffDriveArduino::read(
   }
 
   arduino_.readEncoderValues(l_wheel_.enc, r_wheel_.enc);
+  // RCLCPP_INFO(rclcpp::get_logger("DiffDriveArduinoHardware"),"Left Encoder %d Right Encoder %d", l_wheel_.enc, r_wheel_.enc );
 
   double pos_prev = l_wheel_.pos;
   l_wheel_.pos = l_wheel_.calcEncAngle();
@@ -131,9 +132,9 @@ hardware_interface::return_type DiffDriveArduino::write(
     return return_type::ERROR;
   }
 
-  arduino_.setMotorValues(l_wheel_.cmd / l_wheel_.rads_per_count / cfg_.loop_rate, r_wheel_.cmd / r_wheel_.rads_per_count / cfg_.loop_rate);
-  float leko = l_wheel_.cmd / l_wheel_.rads_per_count / cfg_.loop_rate;
-   RCLCPP_INFO(rclcpp::get_logger("DiffDriveArduinoHardware"),"Motor spped left %f", leko );
+  arduino_.setMotorValues(l_wheel_.cmd/15.384614, r_wheel_.cmd/15.384614);
+  float leko = l_wheel_.cmd;
+  RCLCPP_INFO(rclcpp::get_logger("DiffDriveArduinoHardware"),"Motor spped left %f", leko );
 
 
 
