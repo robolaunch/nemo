@@ -55,7 +55,7 @@
     <joint name="ydlidar2_joint" type="fixed">
         <parent link="chassis"/>
         <child link="ydlidar2"/>
-        <origin xyz="0.3831 -0.09876 0.268" rpy="0 0 0"/>
+        <origin xyz="0.3831 -0.09876 0.358" rpy="0 0 0"/>
     </joint>
 
     <link name="ydlidar2">
