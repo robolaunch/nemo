@@ -13,16 +13,17 @@ slam_toolbox:
     odom_frame: odom
     map_frame: map
     base_frame: base_footprint
-    scan_topic: /scan1
+    scan_topic: /scan
     # mode:  localization
     mode:  mapping
 
     # if you'd like to immediately start continuing a map at a given pose
     # or at the dock, but they are mutually exclusive, if pose is given
     # will use pose
-    # map_file_name: /home/orangepi/articubot_ws/src/articubot_one/config/maps/ada
-    # map_start_at_dock: true
-    # map_start_pose: [0.0, 0.0, 0.0]
+    # map_file_name: /home/nuc/nemo_ws/src/Nemo/articubot_one/config/maps/ofis
+    # # map_start_at_dock: true
+    # map_start_pose: [-2.847, -4.9, 1.5]
+
 
     debug_logging: false
     throttle_scans: 1

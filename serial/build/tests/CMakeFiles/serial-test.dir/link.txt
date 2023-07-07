@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/serial-test.dir/unix_serial_tests.cc.o -o serial-test  ../gtest/libgtest_main.a ../gtest/libgtest.a ../libserial.a -lutil -pthread -lrt -lpthread 
