@@ -400,7 +400,7 @@
               </vertical>
             </scan>
             <range>
-              <min>0.3</min>
+              <min>0.05</min>
               <max>12</max>
             </range>
           </ray>
@@ -431,7 +431,7 @@
               </vertical>
             </scan>
             <range>
-              <min>0.3</min>
+              <min>0.05</min>
               <max>12</max>
             </range>
           </ray>
@@ -590,8 +590,8 @@
       </link>
       <static>0</static>
       <plugin name='gazebo_ros2_control' filename='libgazebo_ros2_control.so'>
-        <parameters>/home/user/nemo_ws/install/articubot_one/share/articubot_one/config/my_controllers.yaml</parameters>
-        <parameters>/home/user/nemo_ws/install/articubot_one/share/articubot_one/config/gaz_ros2_ctl_use_sim.yaml</parameters>
+        <parameters>/home/kae/develop/merge_nemo_ws/src/articubot_one/config/my_controllers.yaml</parameters>
+        <parameters>/home/kae/develop/merge_nemo_ws/src/articubot_one/config/gaz_ros2_ctl_use_sim.yaml</parameters>
       </plugin>
       <pose>0 0 0 0 -0 0</pose>
     </model>
