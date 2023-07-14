@@ -1,0 +1,7 @@
+[submodule "bno055"]
+	path = bno055
+	url = git@github.com:flynneva/bno055.git
+[submodule "ydlidar"]
+	path = ydlidar
+	url = git@github.com:lghrainbow/ydlidar_ros2_driver.git
+	branch = humble-devel
