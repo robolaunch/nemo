@@ -19,6 +19,10 @@ warehouse_world_path = PathJoinSubstitution(
         [FindPackageShare("articubot_one"), "worlds", "industrial-warehouse.sdf"]
     )
 
+arcelik_world_path = PathJoinSubstitution(
+        [FindPackageShare("articubot_one"), "worlds", "arcelik"]
+    )
+
 gazebo_path = PathJoinSubstitution(
         [FindPackageShare("gazebo_ros"), "launch", "gazebo.launch.py"]
     )
@@ -47,7 +51,7 @@ def generate_launch_description():
 
         DeclareLaunchArgument(
             name="world",
-            default_value="warehouse",
+            default_value="arcelik",
             description="gazebo world name"
         ),
 
@@ -93,6 +97,32 @@ def generate_launch_description():
             condition=IfCondition(
                 PythonExpression(
                     ["'", LaunchConfiguration("world"), "' == 'warehouse'"]
+                )
+            ),
+        ),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(gazebo_path),
+            launch_arguments={
+                'use_sim_time': str("true"),
+                'world': arcelik_world_path,
+            }.items(),
+            condition=IfCondition(
+                PythonExpression(
+                    ["'", LaunchConfiguration("world"), "' == 'arcelik'"]
+                )
+            ),
+        ),
+
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(gazebo_path),
+            launch_arguments={
+                'use_sim_time': str("true"),
+                'world': empty_world_path,
+            }.items(),
+            condition=IfCondition(
+                PythonExpression(
+                    ["'", LaunchConfiguration("world"), "' == 'empty'"]
                 )
             ),
         ),

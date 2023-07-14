@@ -33,7 +33,7 @@ private:
     auto transformed_linear_acc = std::make_shared<geometry_msgs::msg::Vector3>();
 
     // Transform the linear acceleration values
-    transformed_linear_acc->x = msg->linear_acceleration.z;
+    transformed_linear_acc->x =  msg->linear_acceleration.z;
     transformed_linear_acc->y = -msg->linear_acceleration.x;
     transformed_linear_acc->z = -msg->linear_acceleration.y;
 
@@ -45,8 +45,36 @@ private:
     transformed_imu_publisher_->publish(*transformed_imu);
   }
 
+  void calculateRotationMatrix(double roll, double pitch, double yaw, double R[3][3]) {
+    // Convert angles to radians
+    double rollRad  = roll  * M_PI / 180.0;
+    double pitchRad = pitch * M_PI / 180.0;
+    double yawRad   = yaw   * M_PI / 180.0;
+
+    // Calculate trigonometric values
+    double cosRoll  = std::cos(rollRad);
+    double sinRoll  = std::sin(rollRad);
+    double cosPitch = std::cos(pitchRad);
+    double sinPitch = std::sin(pitchRad);
+    double cosYaw   = std::cos(yawRad);
+    double sinYaw   = std::sin(yawRad);
+
+    // Calculate individual elements of the rotation matrix
+    R[0][0] = cosYaw * cosPitch;
+    R[0][1] = cosYaw * sinPitch * sinRoll - sinYaw * cosRoll;
+    R[0][2] = cosYaw * sinPitch * cosRoll + sinYaw * sinRoll;
+
+    R[1][0] = sinYaw * cosPitch;
+    R[1][1] = sinYaw * sinPitch * sinRoll + cosYaw * cosRoll;
+    R[1][2] = sinYaw * sinPitch * cosRoll - cosYaw * sinRoll;
+
+    R[2][0] = -sinPitch;
+    R[2][1] = cosPitch * sinRoll;
+    R[2][2] = cosPitch * cosRoll;
+  }
+
   rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr imu_subscriber_;
-  rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr transformed_imu_publisher_;
+  rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr    transformed_imu_publisher_;
 };
 
 int main(int argc, char** argv)
