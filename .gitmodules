@@ -1,0 +1,4 @@
+[submodule "ydlidar"]
+	path = ydlidar
+	url = git@github.com:esamet/ydlidar_ros2_driver.git
+	branch = humble-devel
