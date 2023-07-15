@@ -11,7 +11,7 @@ def generate_launch_description():
     declared_env_vars = []
     declared_parameters = []
 
-    params_file = "/home/user/ira_ros2/src/config/laserscan_merge.yaml"
+    params_file = "/home/orangepi/merge_nemo_ws/src/Nemo/ira_laser_tools/config/laserscan_merge.yaml"
 
     declared_arguments.append(
         DeclareLaunchArgument(
