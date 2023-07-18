@@ -3,15 +3,19 @@ from launch_ros.actions import Node
 from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument
 import os
+from launch.substitutions import PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
 from ament_index_python.packages import get_package_share_directory
 
+
+params_file = PathJoinSubstitution(
+        [FindPackageShare("ira_laser_tools"), "launch", "laserscan_merge.yaml"]
+    )
 
 def generate_launch_description():
     declared_arguments = []
     declared_env_vars = []
     declared_parameters = []
-
-    params_file = "/home/orangepi/merge_nemo_ws/src/Nemo/ira_laser_tools/config/laserscan_merge.yaml"
 
     declared_arguments.append(
         DeclareLaunchArgument(

@@ -4,6 +4,7 @@
 #include <geometry_msgs/msg/twist.hpp>
 #include <pcl_conversions/pcl_conversions.h>
 #include <rclcpp/rclcpp.hpp>
+bool direction = true;
 
 class LaserToPointCloudNode : public rclcpp::Node {
 public:
@@ -17,11 +18,11 @@ public:
         cmd_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>(
             "cmd_vel", 10);
 
-        vel_magnitude = 0.2;
         cmd_vel = std::make_shared<geometry_msgs::msg::Twist>();
     }
 
 private:
+
     void laserScanCallback(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
         sensor_msgs::msg::PointCloud2::SharedPtr cloud = convertLaserScanToPointCloud(scan);
         publisher_->publish(*cloud);
@@ -34,17 +35,30 @@ private:
 
         vel_x = vel_magnitude*(com_vec[0]/magnitude);
         vel_y = vel_magnitude*(com_vec[1]/magnitude);
-        cmd_vel->linear.x = vel_x;
-        cmd_vel->linear.y = vel_y;
-        cmd_vel->angular.z = angle_rad * p_angular;
+        vel_z = angle_rad * p_angular;
 
-        
+        if(direction == 1){
+        vel_magnitude = 0.3;
+        }
+        else if(direction == 0){
+        vel_magnitude = -0.3;
+        //vel_z = -1 * vel_z;
+        }
+        else{
+        vel_magnitude = 0.0;
+        }
+
         printf("angle error (deg): %.2f\n", angle_deg);
         printf("angle error (rad): %.2f\n", angle_rad);
 
         printf("vel x: %.3f\n",  cmd_vel->linear.x);
         printf("vel y: %.3f\n",cmd_vel->linear.y);
         printf("vel yaw: %.3f\n\n",cmd_vel->angular.z);
+        printf("Direction = %d\n",direction);
+
+        cmd_vel->linear.x = vel_x;
+        cmd_vel->linear.y = vel_y;
+        cmd_vel->angular.z = vel_z;
 
 
         cmd_publisher_->publish(*cmd_vel);
@@ -97,7 +111,11 @@ private:
         // Calculate the average of coordinates for valid points
         double avg_x = sum_x / valid_points;
         double avg_y = sum_y / valid_points;
-        // double avg_z = sum_z / valid_points;
+        printf("x distance = %.3f\n\n",avg_x);
+
+        if(avg_x<0.60){
+            direction=false;
+        }
         
 
         std::vector<double> result = {avg_x, avg_y};
@@ -140,6 +158,7 @@ private:
 
     double vel_x;
     double vel_y;
+    double vel_z;
     double vel_magnitude;
 };
 
