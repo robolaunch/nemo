@@ -32,6 +32,9 @@ ament_target_dependencies(realsense_coordinate_converter rclcpp sensor_msgs)
 add_executable(calculate_path src/calculate_path.cpp)
 ament_target_dependencies(calculate_path rclcpp sensor_msgs geometry_msgs PCL pcl_conversions)
 
+add_executable(calculate_path_dev_reverse src/calculate_path_dev_reverse.cpp)
+ament_target_dependencies(calculate_path_dev_reverse rclcpp sensor_msgs geometry_msgs PCL pcl_conversions)
+
 add_executable(get_laser_range src/get_laser_range.cpp)
 ament_target_dependencies(get_laser_range rclcpp sensor_msgs)
 
@@ -55,6 +58,7 @@ install(
   TARGETS
   realsense_coordinate_converter
   calculate_path
+  calculate_path_dev_reverse
   get_laser_range
   DESTINATION lib/${PROJECT_NAME}
 )

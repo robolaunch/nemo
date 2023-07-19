@@ -10,8 +10,10 @@ class LaserToPointCloudNode : public rclcpp::Node {
 public:
     LaserToPointCloudNode() : Node("laser_to_pointcloud") {
         RCLCPP_INFO(this->get_logger(), "NODE CREATED");
-        subscription_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
-            "scan_filtered_front", 10, std::bind(&LaserToPointCloudNode::laserScanCallback, this, std::placeholders::_1));
+        subscription_front_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
+            "scan_filtered_front", 10, std::bind(&LaserToPointCloudNode::laserScanCallback_front, this, std::placeholders::_1));
+        subscription_rear_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
+            "scan_filtered_rear", 10, std::bind(&LaserToPointCloudNode::laserScanCallback_rear, this, std::placeholders::_1));
         publisher_ = this->create_publisher<sensor_msgs::msg::PointCloud2>(
             "point_cloud_topic", 10);
 
@@ -23,7 +25,8 @@ public:
 
 private:
 
-    void laserScanCallback(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
+    void laserScanCallback_front(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
+        if(direction==1){
         sensor_msgs::msg::PointCloud2::SharedPtr cloud = convertLaserScanToPointCloud(scan);
         publisher_->publish(*cloud);
         std::vector<double> com_vec = calculatePointCloudCenter(cloud);
@@ -32,6 +35,7 @@ private:
 
         double angle_rad = std::atan2(com_vec[1], com_vec[0]);
         double angle_deg = angle_rad * 180.0 / M_PI; 
+        printf("com_vec = %f",com_vec[0]);
 
         vel_x = vel_magnitude*(com_vec[0]/magnitude);
         vel_y = vel_magnitude*(com_vec[1]/magnitude);
@@ -56,14 +60,62 @@ private:
         printf("vel yaw: %.3f\n\n",cmd_vel->angular.z);
         printf("Direction = %d\n",direction);
 
-        cmd_vel->linear.x = vel_x;
+        cmd_vel->linear.x = vel_magnitude;
         cmd_vel->linear.y = vel_y;
         cmd_vel->angular.z = vel_z;
 
 
         cmd_publisher_->publish(*cmd_vel);
-
+        }
     }
+void laserScanCallback_rear(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
+        if(direction==0){
+        sensor_msgs::msg::PointCloud2::SharedPtr cloud = convertLaserScanToPointCloud(scan);
+        publisher_->publish(*cloud);
+        std::vector<double> com_vec = calculatePointCloudCenter(cloud);
+        double magnitude = std::sqrt(com_vec[0]*com_vec[0] + com_vec[1]*com_vec[1]);
+        double p_angular = 1.0;
+        int pointerke= 1;
+        if((std::atan2(com_vec[1], com_vec[0])) < 0){
+            pointerke = -1;
+        }
+        else if((std::atan2(com_vec[1], com_vec[0])) > 0){
+            pointerke = 1;
+        }
+        double angle_rad = M_PI - (pointerke * std::atan2(com_vec[1], com_vec[0]));
+        double angle_deg = angle_rad * 180.0 / M_PI ; 
+        printf("com_vec_x = %f com_vec_y = %f \n\n",com_vec[0],com_vec[1]);
+        vel_x = vel_magnitude*(com_vec[0]/magnitude);
+        vel_y = vel_magnitude*(com_vec[1]/magnitude);
+        vel_z = -1 * pointerke * angle_rad * p_angular;
+
+        if(direction == 1){
+        vel_magnitude = 0.3;
+        }
+        else if(direction == 0){
+        vel_magnitude = -0.3;
+        //vel_z = -1 * vel_z;
+        }
+        else{
+        vel_magnitude = 0.0;
+        }
+
+        printf("angle error (deg): %.2f\n", angle_deg);
+        printf("angle error (rad): %.2f\n", angle_rad);
+
+        printf("vel x: %.3f\n",  cmd_vel->linear.x);
+        printf("vel y: %.3f\n",cmd_vel->linear.y);
+        printf("vel yaw: %.3f\n\n",cmd_vel->angular.z);
+        printf("Direction = %d\n",direction);
+
+        cmd_vel->linear.x = vel_magnitude;
+        cmd_vel->linear.y = vel_y;
+        cmd_vel->angular.z = vel_z;
+
+
+        cmd_publisher_->publish(*cmd_vel);
+        }
+}
 
 
     std::vector<double> calculatePointCloudCenter(const sensor_msgs::msg::PointCloud2::ConstPtr& cloud_msg) {
@@ -147,7 +199,8 @@ private:
         return cloud;
     }
 
-    rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_;
+    rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_front_;
+    rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_rear_;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr publisher_;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_publisher_;
 

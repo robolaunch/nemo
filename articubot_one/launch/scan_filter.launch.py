@@ -8,10 +8,12 @@ from launch_ros.substitutions import FindPackageShare
 
 from launch_ros.actions import Node
 
-filter_config_path = PathJoinSubstitution(
-        [FindPackageShare("articubot_one"), "config", "laser_filter.yaml"]
+filter_front_config_path = PathJoinSubstitution(
+        [FindPackageShare("articubot_one"), "config", "laser_filter_front.yaml"]
     )
-
+filter_rear_config_path = PathJoinSubstitution(
+        [FindPackageShare("articubot_one"), "config", "laser_filter_rear.yaml"]
+    )
 def generate_launch_description():
 
     return LaunchDescription([
@@ -19,9 +21,17 @@ def generate_launch_description():
         Node(
             package="laser_filters",
             executable="scan_to_scan_filter_chain",
-            parameters=[filter_config_path],
+            parameters=[filter_front_config_path],
             # arguments=["--ros-args --remap scan:=scan1"]
-            remappings=[("scan", "scan_multi")]
+            remappings=[("scan", "scan_multi"),("scan_filtered",("scan_filtered_front"))]
+        ),
+
+        Node(
+            package="laser_filters",
+            executable="scan_to_scan_filter_chain",
+            parameters=[filter_rear_config_path],
+            # arguments=["--ros-args --remap scan:=scan1"]
+            remappings=[("scan", "scan_multi"),("scan_filtered",("scan_filtered_rear"))]
         ),
     ])
 
