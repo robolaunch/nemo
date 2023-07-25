@@ -16,7 +16,7 @@ laserscan_multi_merger:
 
       destination_frame       : "base_link"
       cloud_destination_topic : "/merged_cloud"
-      scan_destination_topic  : "/scan_multi"
+      scan_destination_topic  : "/scan"
       laserscan_topics        : "/scan1 /scan2" 
       angle_min               : -3.14159
       angle_max               :  3.14159
