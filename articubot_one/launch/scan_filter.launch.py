@@ -23,7 +23,7 @@ def generate_launch_description():
             executable="scan_to_scan_filter_chain",
             parameters=[filter_front_config_path],
             # arguments=["--ros-args --remap scan:=scan1"]
-            remappings=[("scan", "scan_multi"),("scan_filtered",("scan_filtered_front"))]
+            remappings=[("scan_filtered",("scan_filtered_front"))]
         ),
 
         Node(
@@ -31,7 +31,7 @@ def generate_launch_description():
             executable="scan_to_scan_filter_chain",
             parameters=[filter_rear_config_path],
             # arguments=["--ros-args --remap scan:=scan1"]
-            remappings=[("scan", "scan_multi"),("scan_filtered",("scan_filtered_rear"))]
+            remappings=[("scan_filtered",("scan_filtered_rear"))]
         ),
     ])
 

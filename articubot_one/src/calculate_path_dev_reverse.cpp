@@ -163,12 +163,12 @@ void laserScanCallback_rear(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
         // Calculate the average of coordinates for valid points
         double avg_x = sum_x / valid_points;
         double avg_y = sum_y / valid_points;
-        printf("x distance = %.3f\n\n",avg_x);
 
-        if(avg_x<0.60){
+        if(avg_x<0.30){
             direction=false;
         }
         
+        printf("x distance = %.3f\n\n",avg_x);
 
         std::vector<double> result = {avg_x, avg_y};
 
