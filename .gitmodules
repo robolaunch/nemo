@@ -5,3 +5,6 @@
 [submodule "bno055"]
 	path = bno055
 	url = git@github.com:esamet/bno055.git
+[submodule "ydlidar_ros2_driver"]
+	path = ydlidar_ros2_driver
+	url = git@github.com:esamet/ydlidar_ros2_driver.git
