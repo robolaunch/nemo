@@ -164,7 +164,18 @@ private:
 
 int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<LaserToPointCloudNode>());
+
+    rclcpp::executors::MultiThreadedExecutor executor;
+    executor.add_node(std::make_shared<LaserToPointCloudNode>());
+
+    // Start the executor in a separate thread
+    std::thread executor_thread([&executor]() {
+        executor.spin();
+    });
+
+    // Wait for the executor thread to finish (optional)
+    executor_thread.join();
+    // rclcpp::spin(std::make_shared<LaserToPointCloudNode>());
     rclcpp::shutdown();
     return 0;
 }

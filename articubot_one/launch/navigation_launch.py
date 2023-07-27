@@ -40,7 +40,8 @@ def generate_launch_description():
     use_respawn = LaunchConfiguration('use_respawn')
     log_level = LaunchConfiguration('log_level')
 
-    lifecycle_nodes = ['controller_server',
+    lifecycle_nodes = [
+                       'controller_server',
                        'smoother_server',
                        'planner_server',
                        'behavior_server',

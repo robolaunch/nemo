@@ -4,6 +4,9 @@
 #include <geometry_msgs/msg/twist.hpp>
 #include <pcl_conversions/pcl_conversions.h>
 #include <rclcpp/rclcpp.hpp>
+#include "articubot_interfaces/srv/follow_cooridor.hpp"
+#include <thread>
+
 bool direction = true;
 
 class LaserToPointCloudNode : public rclcpp::Node {
@@ -20,10 +23,22 @@ public:
         cmd_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>(
             "cmd_vel", 10);
 
+        service = this->create_service<articubot_interfaces::srv::FollowCooridor>(
+            "follow_cooridor", std::bind(&LaserToPointCloudNode::follow_path, this, std::placeholders::_1, std::placeholders::_2)
+        );
+
         cmd_vel = std::make_shared<geometry_msgs::msg::Twist>();
     }
 
 private:
+
+    void follow_path(const std::shared_ptr<articubot_interfaces::srv::FollowCooridor::Request> request,     // CHANGE
+        std::shared_ptr<articubot_interfaces::srv::FollowCooridor::Response>       response)  // CHANGE
+    {
+        if(request->run){
+            RCLCPP_INFO(get_logger(), "run called");                                          // CHANGE
+        }                                       // CHANGE
+    }
 
     void laserScanCallback_front(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
         if(direction==1){
@@ -35,7 +50,7 @@ private:
 
         double angle_rad = std::atan2(com_vec[1], com_vec[0]);
         double angle_deg = angle_rad * 180.0 / M_PI; 
-        printf("com_vec = %f",com_vec[0]);
+        // printf("com_vec = %f",com_vec[0]);
 
         vel_x = vel_magnitude*(com_vec[0]/magnitude);
         vel_y = vel_magnitude*(com_vec[1]/magnitude);
@@ -52,13 +67,13 @@ private:
         vel_magnitude = 0.0;
         }
 
-        printf("angle error (deg): %.2f\n", angle_deg);
-        printf("angle error (rad): %.2f\n", angle_rad);
+        // printf("angle error (deg): %.2f\n", angle_deg);
+        // printf("angle error (rad): %.2f\n", angle_rad);
 
-        printf("vel x: %.3f\n",  cmd_vel->linear.x);
-        printf("vel y: %.3f\n",cmd_vel->linear.y);
-        printf("vel yaw: %.3f\n\n",cmd_vel->angular.z);
-        printf("Direction = %d\n",direction);
+        // printf("vel x: %.3f\n",  cmd_vel->linear.x);
+        // printf("vel y: %.3f\n",cmd_vel->linear.y);
+        // printf("vel yaw: %.3f\n\n",cmd_vel->angular.z);
+        // printf("Direction = %d\n",direction);
 
         cmd_vel->linear.x = vel_magnitude;
         cmd_vel->linear.y = vel_y;
@@ -68,7 +83,8 @@ private:
         cmd_publisher_->publish(*cmd_vel);
         }
     }
-void laserScanCallback_rear(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
+
+    void laserScanCallback_rear(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
         if(direction==0){
         sensor_msgs::msg::PointCloud2::SharedPtr cloud = convertLaserScanToPointCloud(scan);
         publisher_->publish(*cloud);
@@ -84,7 +100,7 @@ void laserScanCallback_rear(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
         }
         double angle_rad = M_PI - (pointerke * std::atan2(com_vec[1], com_vec[0]));
         double angle_deg = angle_rad * 180.0 / M_PI ; 
-        printf("com_vec_x = %f com_vec_y = %f \n\n",com_vec[0],com_vec[1]);
+        // printf("com_vec_x = %f com_vec_y = %f \n\n",com_vec[0],com_vec[1]);
         vel_x = vel_magnitude*(com_vec[0]/magnitude);
         vel_y = vel_magnitude*(com_vec[1]/magnitude);
         vel_z = -1 * pointerke * angle_rad * p_angular;
@@ -100,13 +116,13 @@ void laserScanCallback_rear(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
         vel_magnitude = 0.0;
         }
 
-        printf("angle error (deg): %.2f\n", angle_deg);
-        printf("angle error (rad): %.2f\n", angle_rad);
+        // printf("angle error (deg): %.2f\n", angle_deg);
+        // printf("angle error (rad): %.2f\n", angle_rad);
 
-        printf("vel x: %.3f\n",  cmd_vel->linear.x);
-        printf("vel y: %.3f\n",cmd_vel->linear.y);
-        printf("vel yaw: %.3f\n\n",cmd_vel->angular.z);
-        printf("Direction = %d\n",direction);
+        // printf("vel x: %.3f\n",  cmd_vel->linear.x);
+        // printf("vel y: %.3f\n",cmd_vel->linear.y);
+        // printf("vel yaw: %.3f\n\n",cmd_vel->angular.z);
+        // printf("Direction = %d\n",direction);
 
         cmd_vel->linear.x = vel_magnitude;
         cmd_vel->linear.y = vel_y;
@@ -115,7 +131,9 @@ void laserScanCallback_rear(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
 
         cmd_publisher_->publish(*cmd_vel);
         }
-}
+
+        
+    }
 
 
     std::vector<double> calculatePointCloudCenter(const sensor_msgs::msg::PointCloud2::ConstPtr& cloud_msg) {
@@ -163,7 +181,7 @@ void laserScanCallback_rear(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
         // Calculate the average of coordinates for valid points
         double avg_x = sum_x / valid_points;
         double avg_y = sum_y / valid_points;
-        printf("x distance = %.3f\n\n",avg_x);
+        // printf("x distance = %.3f\n\n",avg_x);
 
         if(avg_x<0.60){
             direction=false;
@@ -203,6 +221,7 @@ void laserScanCallback_rear(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_rear_;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr publisher_;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_publisher_;
+    rclcpp::Service<articubot_interfaces::srv::FollowCooridor>::SharedPtr service;
 
     geometry_msgs::msg::Twist::SharedPtr cmd_vel;
 
@@ -217,7 +236,21 @@ void laserScanCallback_rear(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
 
 int main(int argc, char** argv) {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<LaserToPointCloudNode>());
+
+    rclcpp::executors::MultiThreadedExecutor executor;
+    executor.add_node(std::make_shared<LaserToPointCloudNode>());
+    executor.spin();
+    // rclcpp::spin(std::make_shared<LaserToPointCloudNode>());
+
+    std::thread executor_thread([&executor]() {
+        executor.spin();
+    });
+
+    sleep(1000000000);
+
+    // Wait for the executor thread to finish (optional)
+    executor_thread.join();
+
     rclcpp::shutdown();
     return 0;
 }

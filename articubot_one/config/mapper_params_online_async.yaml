@@ -38,7 +38,7 @@ slam_toolbox:
 
     # General Parameters
     use_scan_matching: true
-    use_scan_barycenter: true
+    use_scan_barycenter: false
     minimum_travel_distance: 0.5
     minimum_travel_heading: 0.5
     scan_buffer_size: 10

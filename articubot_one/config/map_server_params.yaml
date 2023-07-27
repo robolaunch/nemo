@@ -1,0 +1,6 @@
+map_server:
+    ros__parameters:
+      frame_id: map   
+      topic_name: map
+      use_sim_time: false
+      yaml_filename: "/home/mert/narrow_ws/src/articubot_one/map/arcelik_sim_map2.yaml"
