@@ -164,7 +164,7 @@ void laserScanCallback_rear(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
         double avg_x = sum_x / valid_points;
         double avg_y = sum_y / valid_points;
 
-        if(avg_x<0.30){
+        if(avg_x<0.50){
             direction=false;
         }
         

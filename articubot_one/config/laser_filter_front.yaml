@@ -9,7 +9,7 @@ scan_to_scan_filter_chain:
         max_x: 10.0
         max_y: 10.0
         max_z: 0.5
-        min_x: -0.0
+        min_x: 0.15
         min_y: -10.0
         min_z: -0.5
         
