@@ -58,7 +58,7 @@ class BarcodeReader(Node):
                                                   self.pose.pose.orientation.y,
                                                   self.pose.pose.orientation.z,])
             
-            magnitude = 0.5
+            magnitude = 0.6
             direction_vec = [math.cos(yaw+math.pi*0.5)*magnitude, math.sin(yaw+math.pi*0.5)*magnitude]
 
 
