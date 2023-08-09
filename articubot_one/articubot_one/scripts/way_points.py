@@ -25,7 +25,6 @@ from threading import Thread
 from tf2_ros import TransformListener, Buffer
 from geometry_msgs.msg import TransformStamped
 from nav_msgs.msg import Odometry
-from articubot_interfaces.srv import FollowCooridor
 import tf2_ros
 
 """

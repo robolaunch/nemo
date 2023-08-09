@@ -22,7 +22,6 @@ find_package(geometry_msgs REQUIRED)
 find_package(pcl_conversions REQUIRED)
 find_package(PCL REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(articubot_interfaces REQUIRED)
 find_package(tf2_ros REQUIRED)
 
 ament_python_install_package(${PROJECT_NAME})
@@ -47,13 +46,13 @@ add_executable(calculate_path src/calculate_path.cpp)
 ament_target_dependencies(calculate_path rclcpp sensor_msgs geometry_msgs PCL pcl_conversions)
 
 add_executable(calculate_path_dev_reverse src/calculate_path_dev_reverse.cpp)
-ament_target_dependencies(calculate_path_dev_reverse rclcpp sensor_msgs geometry_msgs PCL pcl_conversions articubot_interfaces)
+ament_target_dependencies(calculate_path_dev_reverse rclcpp sensor_msgs geometry_msgs PCL pcl_conversions)
 
 add_executable(get_laser_range src/get_laser_range.cpp)
 ament_target_dependencies(get_laser_range rclcpp sensor_msgs)
 
 add_executable(follow_cooridor_srv src/follow_cooridor_srv.cpp)
-ament_target_dependencies(follow_cooridor_srv articubot_interfaces rclcpp sensor_msgs geometry_msgs PCL pcl_conversions tf2_ros)
+ament_target_dependencies(follow_cooridor_srv rclcpp sensor_msgs geometry_msgs PCL pcl_conversions tf2_ros)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

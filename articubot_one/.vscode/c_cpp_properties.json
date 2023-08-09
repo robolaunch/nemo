@@ -6,11 +6,9 @@
         "limitSymbolsToIncludedHeaders": false
       },
       "includePath": [
-        "/home/mert/narrow_ws/install/articubot_interfaces/include/**",
         "/home/mert/narrow_ws/install/serial/include/**",
         "/home/mert/narrow_ws/install/rplidar_ros/include/**",
         "/opt/ros/humble/include/**",
-        "/home/mert/narrow_ws/src/articubot_interfaces/include/**",
         "/home/mert/narrow_ws/src/diffdrive_arduino/include/**",
         "/home/mert/narrow_ws/src/rplidar_ros2/include/**",
         "/home/mert/narrow_ws/src/serial/include/**",

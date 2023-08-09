@@ -3,7 +3,6 @@
 #include <cmath>
 #include <unistd.h>
 
-#include "articubot_interfaces/srv/follow_cooridor.hpp"
 #include <sensor_msgs/msg/laser_scan.hpp>
 #include <sensor_msgs/msg/point_cloud2.hpp>
 #include <geometry_msgs/msg/point32.hpp>
@@ -32,10 +31,7 @@ public:
     sub_options.callback_group = cb_group_1_;
 
 
-    service_ = this->create_service<articubot_interfaces::srv::FollowCooridor>(
-      "follow_cooridor", std::bind(&FollowCooridor::handleServiceRequest, this, std::placeholders::_1, std::placeholders::_2),
-        rmw_qos_profile_services_default
-    );
+
 
     subscription_front_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
         "scan_filtered_front", 10, std::bind(&FollowCooridor::laserScanCallback_front, this, std::placeholders::_1),
@@ -58,22 +54,7 @@ public:
   }
 
 private:
-  void handleServiceRequest(const std::shared_ptr<articubot_interfaces::srv::FollowCooridor::Request> request,
-                            std::shared_ptr<articubot_interfaces::srv::FollowCooridor::Response> response)
-  {
-    is_cooridor_exit = false;
-    if(request->run){
-            RCLCPP_INFO(get_logger(), "run called");                                          // CHANGE
-            this->step_after_enterance = 0;
-            direction=true;
-        }
-    // follow_path();
-    this->run = request->run;
 
-    while(!is_cooridor_exit){
-        usleep(100000);
-    }
-  }
 
   void laserScanCallback_front(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
         // sensor_msgs::msg::PointCloud2::SharedPtr cloud = convertLaserScanToPointCloud(scan);
@@ -276,7 +257,6 @@ private:
 
     }
 
-  rclcpp::Service<articubot_interfaces::srv::FollowCooridor>::SharedPtr service_;
   rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_front_;
   rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_rear_;
 

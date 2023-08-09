@@ -4,7 +4,6 @@
 #include <geometry_msgs/msg/twist.hpp>
 #include <pcl_conversions/pcl_conversions.h>
 #include <rclcpp/rclcpp.hpp>
-#include "articubot_interfaces/srv/follow_cooridor.hpp"
 #include <thread>
 
 bool direction = true;
@@ -23,22 +22,14 @@ public:
         cmd_publisher_ = this->create_publisher<geometry_msgs::msg::Twist>(
             "cmd_vel", 10);
 
-        service = this->create_service<articubot_interfaces::srv::FollowCooridor>(
-            "follow_cooridor", std::bind(&LaserToPointCloudNode::follow_path, this, std::placeholders::_1, std::placeholders::_2)
-        );
+
 
         cmd_vel = std::make_shared<geometry_msgs::msg::Twist>();
     }
 
 private:
 
-    void follow_path(const std::shared_ptr<articubot_interfaces::srv::FollowCooridor::Request> request,     // CHANGE
-        std::shared_ptr<articubot_interfaces::srv::FollowCooridor::Response>       response)  // CHANGE
-    {
-        if(request->run){
-            RCLCPP_INFO(get_logger(), "run called");                                          // CHANGE
-        }                                       // CHANGE
-    }
+
 
     void laserScanCallback_front(const sensor_msgs::msg::LaserScan::SharedPtr scan) {
         if(direction==1){
@@ -221,7 +212,6 @@ private:
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_rear_;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr publisher_;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_publisher_;
-    rclcpp::Service<articubot_interfaces::srv::FollowCooridor>::SharedPtr service;
 
     geometry_msgs::msg::Twist::SharedPtr cmd_vel;
 

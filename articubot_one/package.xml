@@ -12,7 +12,32 @@
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
+  <depend>joint-state-broadcaster</depend>
+  <depend>twist-mux</depend>
+  <depend>diff-drive-controller</depend>
+
+  <depend>teleop-twist-joy</depend>
+  <depend>joy</depend>
+  <depend>pcl-*</depend>
+  <depend>gazebo-ros2-control</depend>
+  <depend>controller-manager</depend>
+  <depend>serial-driver</depend>
+  <depend>xacro</depend>
+  <depend>hardware-interface</depend>
+  <depend>slam-toolbox</depend>
+  <depend>joint-state-publisher</depend>
+  <depend>nav2-*</depend>
+  <depend>ros2-control</depend>
+  <depend>ros2-controllers</depend>
+  <depend>python3-dev</depend>
+  <depend>build-essential</depend>
+  <depend>python3-colcon-common-extensions</depend>
+  <depend>autotools-dev</depend>
+  <depend>libbz2-dev</depend>
+  <depend>libicu-dev </depend>
+  <depend>libboost-all-dev</depend>
   
+
 
   <export>
     <build_type>ament_cmake</build_type>
