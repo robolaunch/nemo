@@ -10,12 +10,12 @@ slam_toolbox:
     ceres_loss_function: None
 
     # ROS Parameters
-    odom_frame: odom
-    map_frame: map
+    odom_frame: odom_frame
+    map_frame: map_frame
     base_frame: base_footprint
-    scan_topic: /scan
+    scan_topic: /slamware_ros_sdk_server_node/scan
     # mode:  localization
-    mode:  mapping
+    mode:  localization
 
     # if you'd like to immediately start continuing a map at a given pose
     # or at the dock, but they are mutually exclusive, if pose is given
@@ -34,7 +34,7 @@ slam_toolbox:
     transform_timeout: 0.2
     tf_buffer_duration: 30.
     stack_size_to_use: 40000000 #// program needs a larger stack size to serialize large maps
-    enable_interactive_mode: true
+    enable_interactive_mode: false
 
     # General Parameters
     use_scan_matching: true
@@ -46,7 +46,7 @@ slam_toolbox:
     link_match_minimum_response_fine: 0.1  
     link_scan_maximum_distance: 1.5
     loop_search_maximum_distance: 3.0
-    do_loop_closing: true 
+    do_loop_closing: false 
     loop_match_minimum_chain_size: 10           
     loop_match_maximum_variance_coarse: 3.0  
     loop_match_minimum_response_coarse: 0.35    
@@ -71,4 +71,4 @@ slam_toolbox:
     coarse_angle_resolution: 0.0349        
     minimum_angle_penalty: 0.9
     minimum_distance_penalty: 0.5
-    use_response_expansion: true
+    use_response_expansion: false
