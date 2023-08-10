@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
-    <!-- <joint name="laser_joint" type="fixed">
+    <joint name="laser_joint" type="fixed">
         <parent link="chassis"/>
         <child link="laser_frame"/>
         <origin xyz="0.04 0 0.27" rpy="0 0 0"/>
@@ -29,17 +29,17 @@
         <xacro:inertial_cylinder mass="0.1" length="0.04" radius="0.05">
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
-    </link> -->
+    </link>
 
 
 
 
 
-    <joint name="ydlidar1_joint" type="fixed">
+    <!-- <joint name="ydlidar1_joint" type="fixed">
         <parent link="chassis"/>
         <child link="ydlidar1"/>
         <origin xyz="0.0037 0.0 0.268" rpy="0 0 -1.57"/>
-        <!-- <origin xyz="0.0237 0.0 0.268" rpy="0 0 0"/> -->
+    <origin xyz="0.0237 0.0 0.268" rpy="0 0 0"/>
 
     </joint>
 
@@ -58,7 +58,7 @@
         <parent link="chassis"/>
         <child link="ydlidar2"/>
         <origin xyz="0.4031 0.0 0.358" rpy="0 0 1.57"/>
-        <!-- <origin xyz="0.3831 0.0 0.358" rpy="0 0 0"/> -->
+        <origin xyz="0.3831 0.0 0.358" rpy="0 0 0"/> 
 
     </joint>
 
@@ -133,6 +133,6 @@
             </plugin>
         </sensor>
     </gazebo>
-    
+     -->
 
 </robot>
