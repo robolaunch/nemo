@@ -13,7 +13,7 @@
     <xacro:property name="wheel_mass" value="1.0"/>
     <xacro:property name="wheel_offset_x" value="0.2034"/>
     <xacro:property name="wheel_offset_y" value="0.1125"/>
-    <xacro:property name="wheel_offset_z" value="0.0495"/>
+    <xacro:property name="wheel_offset_z" value="0.0490"/>
     <xacro:property name="caster_wheel_radius" value="0.0175"/>
     <xacro:property name="caster_wheel_mass" value="0.1"/>
     <xacro:property name="caster_wheel_offset_x" value="0.075"/>
@@ -73,12 +73,7 @@
             </geometry>
             <material name="orange"/>
         </visual>
-        <collision>
-            <origin xyz="${chassis_length/2} 0 ${chassis_height/2}"/>
-            <geometry>
-                <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
-            </geometry>
-        </collision>
+
         <xacro:inertial_box mass="0.5" x="${chassis_length}" y="${chassis_width}" z="${chassis_height}">
             <origin xyz="${chassis_length/2} 0 ${chassis_height/2}" rpy="0 0 0"/>
         </xacro:inertial_box>
