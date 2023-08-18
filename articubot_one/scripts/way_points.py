@@ -72,32 +72,73 @@ def draw_rect(h, w, navigator):
     h, w = float(h), float(w)
     
     goal_poses = []
-    for _ in range(6):
+    for _ in range(20):
         goal_poses.append(copy.deepcopy(goal_pose))
 
-    goal_poses[0].pose.position.x = 0.477
-    goal_poses[0].pose.position.y = -0.385
-    goal_poses[0] = set_angle(goal_poses[0], 1.759)
+    goal_poses[0].pose.position.x = 1.9
+    goal_poses[0].pose.position.y = 0.0
+    goal_poses[0] = set_angle(goal_poses[0], -1.57)
 
-    goal_poses[1].pose.position.x = 0.602
-    goal_poses[1].pose.position.y = 2.269
-    goal_poses[1] = set_angle(goal_poses[1], 1.515)
+    goal_poses[1].pose.position.x = 1.9
+    goal_poses[1].pose.position.y = -3.0
+    goal_poses[1] = set_angle(goal_poses[1], -1.57)
 
-    goal_poses[2].pose.position.x = 0.452
-    goal_poses[2].pose.position.y = -0.328
-    goal_poses[2] = set_angle(goal_poses[2], 1.706)
+    goal_poses[2].pose.position.x = 1.9
+    goal_poses[2].pose.position.y = 0.0
+    goal_poses[2] = set_angle(goal_poses[2], 0.0)
 
-    goal_poses[3].pose.position.x = 1.355
-    goal_poses[3].pose.position.y = -0.767
-    goal_poses[3] = set_angle(goal_poses[3], 1.685)
+    goal_poses[3].pose.position.x = 3.9
+    goal_poses[3].pose.position.y = 0.0
+    goal_poses[3] = set_angle(goal_poses[3], -1.57)
 
-    goal_poses[4].pose.position.x = 1.442
-    goal_poses[4].pose.position.y = 2.095
-    goal_poses[4] = set_angle(goal_poses[4], 1.516)
+    goal_poses[4].pose.position.x = 3.9
+    goal_poses[4].pose.position.y = -3.0
+    goal_poses[4] = set_angle(goal_poses[4], -1.57)
 
-    goal_poses[5].pose.position.x = 1.341
-    goal_poses[5].pose.position.y = -0.827
-    goal_poses[5] = set_angle(goal_poses[5], 1.703)
+    goal_poses[5].pose.position.x = 3.9
+    goal_poses[5].pose.position.y = 0.0
+    goal_poses[5] = set_angle(goal_poses[5], 0.0)
+
+    goal_poses[6].pose.position.x = 5.9
+    goal_poses[6].pose.position.y = 0.0
+    goal_poses[6] = set_angle(goal_poses[6], -1.57)
+
+    goal_poses[7].pose.position.x = 5.9
+    goal_poses[7].pose.position.y = -3.0
+    goal_poses[7] = set_angle(goal_poses[7], -1.57)
+
+    goal_poses[8].pose.position.x = 5.9
+    goal_poses[8].pose.position.y = 0.0
+    goal_poses[8] = set_angle(goal_poses[8], 0.0)
+
+    goal_poses[9].pose.position.x = 7.9
+    goal_poses[9].pose.position.y = 0.0
+    goal_poses[9] = set_angle(goal_poses[9], -1.57)
+
+    goal_poses[10].pose.position.x = 7.9
+    goal_poses[10].pose.position.y = -3.0
+    goal_poses[10] = set_angle(goal_poses[10], -1.57)
+
+    goal_poses[11].pose.position.x = 7.9
+    goal_poses[11].pose.position.y = 0.0
+    goal_poses[11] = set_angle(goal_poses[11], 0.0)
+
+    goal_poses[12].pose.position.x = 10.2
+    goal_poses[12].pose.position.y = 0.0
+    goal_poses[12] = set_angle(goal_poses[12], -1.57)
+
+    goal_poses[13].pose.position.x = 10.2
+    goal_poses[13].pose.position.y = -3.0
+    goal_poses[13] = set_angle(goal_poses[13], -1.57)
+
+    goal_poses[14].pose.position.x = 10.2
+    goal_poses[14].pose.position.y = 0.0
+    goal_poses[14] = set_angle(goal_poses[14], 0.0)
+
+    goal_poses[15].pose.position.x = 0.0
+    goal_poses[15].pose.position.y = 0.0
+    goal_poses[15] = set_angle(goal_poses[15], 0.0)
+
 
     print("------- GOAL POSES -------")
     for pose in goal_poses:
@@ -142,7 +183,7 @@ def main():
     # local_costmap = navigator.getLocalCostmap()
 
     # Go to our demos first goal pose
-    goal_poses = draw_rect(6.5, 3.5, navigator)
+    goal_poses = draw_rect(1.0, 1.0, navigator)
 
     
 
