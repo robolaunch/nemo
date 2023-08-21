@@ -14,6 +14,7 @@
     </xacro:unless>
     <xacro:include filename="lidar.xacro" />
     <xacro:include filename="camera.xacro" />
+    <xacro:include filename="imu.xacro" />
     <!-- <xacro:include filename="depth_camera.xacro" /> -->
 
     <xacro:include filename="face.xacro" />

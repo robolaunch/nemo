@@ -4,7 +4,7 @@ ekf_filter_node:
 # The frequency, in Hz, at which the filter will output a position estimate. Note that the filter will not begin
 # computation until it receives at least one message from one of theinputs. It will then run continuously at the
 # frequency specified here, regardless of whether it receives more measurements. Defaults to 30 if unspecified.
-        frequency: 30.0
+        frequency: 50.0
 
 # ekf_localization_node and ukf_localization_node both use a 3D omnidirectional motion model. If this parameter is
 # set to true, no 3D information will be used in your state estimate. Use this if you are operating in a planar
@@ -13,7 +13,7 @@ ekf_filter_node:
         two_d_mode: false
 
 # Whether to publish the acceleration state. Defaults to false if unspecified.
-        publish_acceleration: true
+        publish_acceleration: false
 
 # Whether to broadcast the transformation over the /tf topic. Defaultsto true if unspecified.
         publish_tf: true
@@ -33,19 +33,27 @@ ekf_filter_node:
         world_frame: odom           # Defaults to the value ofodom_frame if unspecified
 
         odom0: diff_cont/odom
-        odom0_config: [true,  true,  true,
-                       true,  true,  true,
-                       false, false, false,
+        odom0_config: [true,  true,  false,
+                       false,  false,  true,
+                       true, false, false,
                        false, false, true,
                        false, false, false]
 
-        imu0: laser_odom
-        imu0_config: [false, false, false,
-                      false, false, false,
-                      false, false, false,
-                      false, false, false,
-                      false, false, false]
 
+
+        # odom0_nodelay: false
+        # odom0_differential: false
+        # odom0_relative: false
+        # odom0_queue_size: 5
+
+        imu0: imu/out
+        imu0_config: [false, false, false,
+                      false, false, true,
+                      false, false, false,
+                      false, false, true,
+                      true, false, false]
+
+        # imu0_differential: false
 #         process_noise_covariance: [0.05, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
 #                                    0.0,    0.05, 0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
 #                                    0.0,    0.0,    0.06, 0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,
