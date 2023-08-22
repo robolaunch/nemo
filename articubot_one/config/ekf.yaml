@@ -33,9 +33,9 @@ ekf_filter_node:
         world_frame: odom           # Defaults to the value ofodom_frame if unspecified
 
         odom0: diff_cont/odom
-        odom0_config: [true,  true,  false,
-                       false,  false,  true,
-                       true, false, false,
+        odom0_config: [true,  true,  true,
+                       false,  false,  false,
+                       false, false, false,
                        false, false, true,
                        false, false, false]
 
@@ -48,10 +48,10 @@ ekf_filter_node:
 
         imu0: imu/out
         imu0_config: [false, false, false,
-                      false, false, true,
+                      true, true, true,
                       false, false, false,
-                      false, false, true,
-                      true, false, false]
+                      false, false, false,
+                      false, false, false]
 
         # imu0_differential: false
 #         process_noise_covariance: [0.05, 0.0,    0.0,    0.0,    0.0,    0.0,    0.0,     0.0,     0.0,    0.0,    0.0,    0.0,    0.0,    0.0,    0.0,

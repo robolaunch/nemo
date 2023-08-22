@@ -5,7 +5,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     ekf_config_path = PathJoinSubstitution(
-        [FindPackageShare("articubot_one"), "config", "ekf.yaml"]
+        [FindPackageShare("articubot_one"), "config", "ekf_dev.yaml"]
     )
     
     return LaunchDescription([
