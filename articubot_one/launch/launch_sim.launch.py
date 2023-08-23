@@ -43,7 +43,7 @@ def generate_launch_description():
     gazebo_params_file = os.path.join(get_package_share_directory(package_name),'config','gazebo_params.yaml')
 
     world_path = PathJoinSubstitution(
-        [FindPackageShare("articubot_one"), "worlds", "60cm_w_obstacles.world"]
+        [FindPackageShare("articubot_one"), "worlds", "uberfactory.world"]
     )
 
     # Include the Gazebo launch file, provided by the gazebo_ros package
@@ -57,9 +57,10 @@ def generate_launch_description():
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'my_bot',
-                                   '-x', '-1',
-                                   '-y', '-8',
-                                   '-Y', '1.57079632679'],
+                                   '-x', '11.0',
+                                   '-y', '4.0',
+                                   '-z', '2.0',
+                                   '-Y', '3.141592654'],
                         output='screen')
 
 
@@ -99,8 +100,8 @@ def generate_launch_description():
         rsp,
         joystick,
         twist_mux,
-        gazebo,
         spawn_entity,
+        gazebo,
         diff_drive_spawner,
         joint_broad_spawner
     ])
