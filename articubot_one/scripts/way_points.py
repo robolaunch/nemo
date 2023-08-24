@@ -80,7 +80,7 @@ def draw_rect(h, w, navigator):
     goal_poses[0] = set_angle(goal_poses[0], -1.57)
 
     goal_poses[1].pose.position.x = 2.0
-    goal_poses[1].pose.position.y = -6.0
+    goal_poses[1].pose.position.y = -15.0
     goal_poses[1] = set_angle(goal_poses[1], -1.57)
 
     goal_poses[2].pose.position.x = 2.0
@@ -92,7 +92,7 @@ def draw_rect(h, w, navigator):
     goal_poses[3] = set_angle(goal_poses[3], -1.57)
 
     goal_poses[4].pose.position.x = 3.9
-    goal_poses[4].pose.position.y = -6.0
+    goal_poses[4].pose.position.y = -15.0
     goal_poses[4] = set_angle(goal_poses[4], -1.57)
 
     goal_poses[5].pose.position.x = 3.9
@@ -104,7 +104,7 @@ def draw_rect(h, w, navigator):
     goal_poses[6] = set_angle(goal_poses[6], -1.57)
 
     goal_poses[7].pose.position.x = 5.8
-    goal_poses[7].pose.position.y = -6.0
+    goal_poses[7].pose.position.y = -15.0
     goal_poses[7] = set_angle(goal_poses[7], -1.57)
 
     goal_poses[8].pose.position.x = 5.8
@@ -116,7 +116,7 @@ def draw_rect(h, w, navigator):
     goal_poses[9] = set_angle(goal_poses[9], -1.57)
 
     goal_poses[10].pose.position.x = 7.7
-    goal_poses[10].pose.position.y = -6.0
+    goal_poses[10].pose.position.y = -15.0
     goal_poses[10] = set_angle(goal_poses[10], -1.57)
 
     goal_poses[11].pose.position.x = 7.7
@@ -128,7 +128,7 @@ def draw_rect(h, w, navigator):
     goal_poses[12] = set_angle(goal_poses[12], -1.57)
 
     goal_poses[13].pose.position.x = 9.6
-    goal_poses[13].pose.position.y = -6.0
+    goal_poses[13].pose.position.y = -15.0
     goal_poses[13] = set_angle(goal_poses[13], -1.57)
 
     goal_poses[14].pose.position.x = 9.6
