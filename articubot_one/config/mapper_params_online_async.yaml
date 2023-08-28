@@ -20,7 +20,7 @@ slam_toolbox:
     # or at the dock, but they are mutually exclusive, if pose is given
     # will use pose
     map_file_name: /home/ideapad/develop/test3/src/nemo/articubot_one/map/huge_new
-    map_start_pose: [0.0, 0.0, 0.0]
+    map_start_pose: [-38.4, 43.3, -1.5707]
     map_start_at_dock: true
 
     debug_logging: true
