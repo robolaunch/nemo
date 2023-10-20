@@ -20,3 +20,9 @@ Launch Navigation
 ```
 ros2 launch articubot_one navigation_launch.py
 ```
+
+Launch costmap filter
+
+```
+ros2 launch nav2_costmap_filters_demo costmap_filter_info.launch.py
+```
