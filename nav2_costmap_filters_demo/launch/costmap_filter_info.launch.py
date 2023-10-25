@@ -63,7 +63,7 @@ def generate_launch_description():
     #         description='Full path to filter mask yaml file to load')
 
     params_file_path = os.path.join(get_package_share_directory('nav2_costmap_filters_demo'),'params','keepout_params.yaml')
-    yaml_path = os.path.join(get_package_share_directory('nav2_costmap_filters_demo'),'maps','keepout_mask.yaml')
+    yaml_path = os.path.join(get_package_share_directory('nav2_costmap_filters_demo'),'maps','keepout_mask_40cm.yaml')
 
     # Make re-written yaml
     param_substitutions = {
