@@ -46,7 +46,8 @@ def generate_launch_description():
                        'behavior_server',
                        'bt_navigator',
                        'waypoint_follower',
-                       'velocity_smoother']
+                       'velocity_smoother',
+                       ]
 
     # Map fully qualified names to relative ones so the node's namespace can be prepended.
     # In case of the transforms (tf), currently, there doesn't seem to be a better alternative
@@ -188,6 +189,44 @@ def generate_launch_description():
                 parameters=[{'use_sim_time': use_sim_time},
                             {'autostart': autostart},
                             {'node_names': lifecycle_nodes}]),
+            # Node(
+            #     package='nav2_costmap_2d',
+            #     executable='nav2_costmap_2d',
+            #     name='local_costmap',
+            #     output='screen',
+            #     respawn=use_respawn,
+            #     respawn_delay=2.0,
+            #     parameters=[configured_params],
+            #     arguments=['--ros-args', '--log-level', log_level],
+            #     remappings=remappings),
+            # Node(
+            #     package='nav2_global_costmap',
+            #     executable='global_costmap',
+            #     output='screen',
+            #     respawn=use_respawn,
+            #     respawn_delay=2.0,
+            #     parameters=[configured_params],
+            #     arguments=['--ros-args', '--log-level', log_level],
+            #     remappings=remappings),
+            # Node(
+            #     package='bt_navigator',
+            #     executable='bt_navigator_navigate_through_poses_rclcpp_node',
+            #     output='screen',
+            #     respawn=use_respawn,
+            #     respawn_delay=2.0,
+            #     parameters=[configured_params],
+            #     arguments=['--ros-args', '--log-level', log_level],
+            #     remappings=remappings),
+            # Node(
+            #     package='bt_navigator',
+            #     executable='bt_navigator_navigate_to_pose_rclcpp_node',
+            #     output='screen',
+            #     respawn=use_respawn,
+            #     respawn_delay=2.0,
+            #     parameters=[configured_params],
+            #     arguments=['--ros-args', '--log-level', log_level],
+            #     remappings=remappings),
+
         ]
     )
 
@@ -245,6 +284,31 @@ def generate_launch_description():
                 parameters=[{'use_sim_time': use_sim_time,
                              'autostart': autostart,
                              'node_names': lifecycle_nodes}]),
+            # ComposableNode(
+            #     package='nav2_costmap_2d',
+            #     plugin='nav2_costmap_2d::InflationLayer',
+            #     name='local_costmap',
+            #     parameters=[configured_params],
+            #     remappings=remappings),
+            # ComposableNode(
+            #     package='nav2_global_costmap',
+            #     plugin='nav2_global_costmap::GlobalCostmapNode',
+            #     name='global_costmap_node',
+            #     parameters=[configured_params],
+            #     remappings=remappings),
+            # ComposableNode(
+            #     package='bt_navigator',
+            #     plugin='bt_navigator::NavigateThroughPosesNode',
+            #     name='navigate_through_poses_node',
+            #     parameters=[configured_params],
+            #     remappings=remappings),
+            # ComposableNode(
+            #     package='bt_navigator',
+            #     plugin='bt_navigator::NavigateToPoseNode',
+            #     name='navigate_to_pose_node',
+            #     parameters=[configured_params],
+            #     remappings=remappings),
+
         ],
     )
 
