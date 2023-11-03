@@ -35,7 +35,7 @@ def generate_launch_description():
             get_package_share_directory('turtlebot3_navigation2'),
             'map',
             # 'huge_clean.yaml'
-            'uber.yaml'
+            'huge_clean.yaml'
             ))
 
     param_file_name = TURTLEBOT3_MODEL + '.yaml'

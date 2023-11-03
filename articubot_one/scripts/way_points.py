@@ -75,69 +75,57 @@ def draw_rect(h, w, navigator):
     for _ in range(20):
         goal_poses.append(copy.deepcopy(goal_pose))
 
-    goal_poses[0].pose.position.x = 2.0
-    goal_poses[0].pose.position.y = 0.0
-    goal_poses[0] = set_angle(goal_poses[0], -1.57)
+    goal_poses[0].pose.position.x = -38.216
+    goal_poses[0].pose.position.y = 42.653
+    goal_poses[0] = set_angle(goal_poses[0], 3.14)
 
-    goal_poses[1].pose.position.x = 2.0
-    goal_poses[1].pose.position.y = -15.0
-    goal_poses[1] = set_angle(goal_poses[1], -1.57)
+    goal_poses[1].pose.position.x = -41.849
+    goal_poses[1].pose.position.y = 42.658
+    goal_poses[1] = set_angle(goal_poses[1], 3.14)
 
-    goal_poses[2].pose.position.x = 2.0
-    goal_poses[2].pose.position.y = 0.0
-    goal_poses[2] = set_angle(goal_poses[2], 0.0)
+    goal_poses[2].pose.position.x = -38.216
+    goal_poses[2].pose.position.y = 42.653
+    goal_poses[2] = set_angle(goal_poses[2], 3.14)
 
-    goal_poses[3].pose.position.x = 3.9
-    goal_poses[3].pose.position.y = 0.0
-    goal_poses[3] = set_angle(goal_poses[3], -1.57)
+    goal_poses[3].pose.position.x = -38.352
+    goal_poses[3].pose.position.y = 40.986
+    goal_poses[3] = set_angle(goal_poses[3], 3.14)
 
-    goal_poses[4].pose.position.x = 3.9
-    goal_poses[4].pose.position.y = -15.0
-    goal_poses[4] = set_angle(goal_poses[4], -1.57)
+    goal_poses[4].pose.position.x = -42.150
+    goal_poses[4].pose.position.y = 40.968
+    goal_poses[4] = set_angle(goal_poses[4], 3.14)
 
-    goal_poses[5].pose.position.x = 3.9
-    goal_poses[5].pose.position.y = 0.0
-    goal_poses[5] = set_angle(goal_poses[5], 0.0)
+    goal_poses[5].pose.position.x = -38.176
+    goal_poses[5].pose.position.y = 41.021
+    goal_poses[5] = set_angle(goal_poses[5], 3.14)
 
-    goal_poses[6].pose.position.x = 5.8
-    goal_poses[6].pose.position.y = 0.0
-    goal_poses[6] = set_angle(goal_poses[6], -1.57)
+    goal_poses[6].pose.position.x = -38.176
+    goal_poses[6].pose.position.y = 39.247
+    goal_poses[6] = set_angle(goal_poses[6], 3.14)
 
-    goal_poses[7].pose.position.x = 5.8
-    goal_poses[7].pose.position.y = -15.0
-    goal_poses[7] = set_angle(goal_poses[7], -1.57)
+    goal_poses[7].pose.position.x = -42.952
+    goal_poses[7].pose.position.y = 39.263
+    goal_poses[7] = set_angle(goal_poses[7], 3.14)
 
-    goal_poses[8].pose.position.x = 5.8
-    goal_poses[8].pose.position.y = 0.0
-    goal_poses[8] = set_angle(goal_poses[8], 0.0)
+    goal_poses[8].pose.position.x = -38.176
+    goal_poses[8].pose.position.y = 39.247
+    goal_poses[8] = set_angle(goal_poses[8], 3.14)
 
-    goal_poses[9].pose.position.x = 7.7
-    goal_poses[9].pose.position.y = 0.0
-    goal_poses[9] = set_angle(goal_poses[9], -1.57)
+    goal_poses[9].pose.position.x = -38.067
+    goal_poses[9].pose.position.y = 37.415
+    goal_poses[9] = set_angle(goal_poses[9], 3.14)
 
-    goal_poses[10].pose.position.x = 7.7
-    goal_poses[10].pose.position.y = -15.0
-    goal_poses[10] = set_angle(goal_poses[10], -1.57)
+    goal_poses[10].pose.position.x = -42.781
+    goal_poses[10].pose.position.y = 37.571
+    goal_poses[10] = set_angle(goal_poses[10], 3.14)
 
-    goal_poses[11].pose.position.x = 7.7
-    goal_poses[11].pose.position.y = 0.0
-    goal_poses[11] = set_angle(goal_poses[11], 0.0)
+    goal_poses[11].pose.position.x = -38.067
+    goal_poses[11].pose.position.y = 37.415
+    goal_poses[11] = set_angle(goal_poses[11],3.14)
 
-    goal_poses[12].pose.position.x = 9.6
-    goal_poses[12].pose.position.y = 0.0
-    goal_poses[12] = set_angle(goal_poses[12], -1.57)
-
-    goal_poses[13].pose.position.x = 9.6
-    goal_poses[13].pose.position.y = -15.0
-    goal_poses[13] = set_angle(goal_poses[13], -1.57)
-
-    goal_poses[14].pose.position.x = 9.6
-    goal_poses[14].pose.position.y = 0.0
-    goal_poses[14] = set_angle(goal_poses[14], 0.0)
-
-    goal_poses[15].pose.position.x = 0.0
-    goal_poses[15].pose.position.y = 0.0
-    goal_poses[15] = set_angle(goal_poses[15], 0.0)
+    goal_poses[12].pose.position.x = -38.216
+    goal_poses[12].pose.position.y = 42.653
+    goal_poses[12] = set_angle(goal_poses[12], 3.14)
 
 
     print("------- GOAL POSES -------")
