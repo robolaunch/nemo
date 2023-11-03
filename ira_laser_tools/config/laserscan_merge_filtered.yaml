@@ -1,0 +1,26 @@
+# laserscan_multi_merger:
+#   ros__parameters:
+#     destination_frame: "base_link"
+#     cloud_destination_topic: "/merged_cloud"
+#     scan_destination_topic: "/scan_multi"
+#     laserscan_topics: "/scansx /scandx"
+#     angle_min: 0.0
+#     angle_max: 270.0
+#     angle_increment: 0.00437
+#     scan_time: 0.0
+#     range_min: 0.1
+#     range_max: 2.0
+
+laserscan_multi_merger:
+  ros__parameters:
+
+      destination_frame       : "base_link"
+      cloud_destination_topic : "/merged_cloud"
+      scan_destination_topic  : "/scan"
+      laserscan_topics        : "/scan_filtered_front /scan_filtered_rear" 
+      angle_min               : -3.14159
+      angle_max               :  3.14159
+      angle_increment         :  0.0058
+      scan_time               :  0.0333333
+      range_min               :  0.10
+      range_max               :  15.0
