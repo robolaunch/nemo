@@ -6,7 +6,7 @@ amcl:
     alpha4: 0.2
     alpha5: 0.2
     use_map_topic: True
-    base_frame_id: "base_link_frame"
+    base_frame_id: "base_link"
     beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9
     beam_skip_threshold: 0.3
@@ -48,7 +48,7 @@ amcl:
 bt_navigator:
   ros__parameters:
     global_frame: map_frame
-    robot_base_frame: base_link_frame
+    robot_base_frame: base_link
     odom_topic: /slamware_ros_sdk_server_node/odom
     bt_loop_duration: 10
     default_server_timeout: 20
@@ -193,7 +193,7 @@ local_costmap:
       update_frequency: 5.0
       publish_frequency: 2.0
       global_frame: odom_frame
-      robot_base_frame: base_link_frame
+      robot_base_frame: base_link
       rolling_window: true
       width: 3
       height: 3
@@ -235,7 +235,7 @@ global_costmap:
       update_frequency: 1.0
       publish_frequency: 1.0
       global_frame: map_frame
-      robot_base_frame: base_link_frame
+      robot_base_frame: base_link
       robot_radius: 0.22
       resolution: 0.05
       track_unknown_space: true
@@ -316,7 +316,7 @@ behavior_server:
       plugin: "nav2_behaviors/AssistedTeleop"
     local_frame: odom_frame
     global_frame: map_frame
-    robot_base_frame: base_link_frame
+    robot_base_frame: base_link
     transform_tolerance: 0.1
     simulate_ahead_time: 2.0
     max_rotational_vel: 1.0
